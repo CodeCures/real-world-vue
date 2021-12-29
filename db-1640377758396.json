@@ -71,51 +71,6 @@
           "name": "Aqua Man"
         }
       ]
-    },
-    {
-      "id": 8974240,
-      "user": {
-        "id": "abc1234",
-        "name": "Grave Man"
-      },
-      "organizer": "Grave Man",
-      "category": "nature",
-      "title": "Natural Beauty",
-      "description": "This is the most naturally beautiful website on the internet",
-      "location": "Lagos",
-      "date": "2022-01-20T09:58:00.000Z",
-      "time": "7:00",
-      "attendees": []
-    },
-    {
-      "id": 7662712,
-      "user": {
-        "id": "abc1234",
-        "name": "Grave Man"
-      },
-      "organizer": "Grave Man",
-      "category": "animal welfare",
-      "title": "What you don't Know about Animals",
-      "description": "Fun fact, I don't know much about animals either",
-      "location": "Lagos",
-      "date": "2021-12-30T10:23:00.000Z",
-      "time": "11:00",
-      "attendees": []
-    },
-    {
-      "id": 5763292,
-      "user": {
-        "id": "abc1234",
-        "name": "Grave Man"
-      },
-      "organizer": "Grave Man",
-      "category": "animal welfare",
-      "title": "About Animals",
-      "description": "Fun fact, I don't know much about animals either",
-      "location": "Lagos",
-      "date": "2021-12-17T10:29:00.000Z",
-      "time": "2:00",
-      "attendees": []
     }
   ]
 }
