@@ -5,6 +5,7 @@ export default {
     events: [],
     event: null,
     eventsTotal: 0,
+    perPage: 3
   },
   mutations: {
     GET_EVENTS: (state, events) => (state.events = events),
@@ -14,24 +15,26 @@ export default {
   },
   actions: {
     createEvent({ commit, dispatch }, event) {
-      EventService.postEvent(event).then(() => {
-        commit("SET_EVENTS", event);
-        let notification = {
+      EventService.postEvent(event)
+        .then(() => {
+          commit("SET_EVENTS", event);
+          let notification = {
             type: "success",
             message: "Your event was created successfully!",
           };
           dispatch("notification/add", notification, { root: true });
-      }).catch(error => {
-        let notification = {
+        })
+        .catch((error) => {
+          let notification = {
             type: "error",
             message: "There was an error creating event: " + error.message,
-          }
+          };
           dispatch("notification/add", notification, { root: true });
           throw error;
-      });
+        });
     },
-    fetchEvents({ commit, dispatch }, { perPage, page }) {
-      EventService.getEvents(perPage, page)
+    fetchEvents({ commit, dispatch, state }, {page }) {
+      return EventService.getEvents(state.perPage, page)
         .then((response) => {
           commit("GET_EVENTS", response.data);
           commit("SET_EVENTS_TOTAL", response.headers["x-total-count"]);
@@ -44,19 +47,16 @@ export default {
           dispatch("notification/add", notification, { root: true });
         });
     },
-    fetchEvent({ commit, getters, dispatch }, id) {
+    fetchEvent({ commit, getters }, id) {
       var event = getters.getEventById(id);
       if (event) {
         commit("GET_EVENT", event);
+        return event;
       } else {
-        EventService.getEvent(id)
-          .then((res) => commit("GET_EVENT", res.data))
-          .catch((err) => {
-            let notification = {
-              type: "error",
-              message: "There was an error fetching event: " + err.message,
-            };
-            dispatch("notification/add", notification, { root: true });
+        return EventService.getEvent(id)
+          .then((res) => {
+            commit("GET_EVENT", res.data);
+            return res.data;
           });
       }
     },
